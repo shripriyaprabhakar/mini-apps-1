@@ -17,21 +17,10 @@ var board = [
 var state = {
 	xTurn: true,
 	compTurn: false,
-	clickCount:0
+	clickCount:0,
+	gameWin: false
 };
- //    table.addEventListener('click', function(event) {
-	// 	for (var key in obj) {
-	// 		if (obj[key] === undefined) {
-	// 			alert ('you can click here');
-	// 			event.target.textContent = 'X';
-	// 			console.log(event.target.textContent);
-	// 			state.xTurn = false;
-	// 		} else if (obj[key] !== undefined) {
-	// 			alert ('this move is not valid')
-	// 		} 
-	// 	}
 
-	// });
 
 // var playGame = function () {
   table.addEventListener('click', function(event) {
@@ -55,15 +44,12 @@ var state = {
 
   if (state.clickCount === 9) {
 	results();
+ 
 }
-  
+
+
   });
 
-// }
-
- 
-// playGame();
-//check for rows
 
 var r1c1text;
 var r1c2text;
@@ -76,10 +62,7 @@ var r3c2text;
 var r3c3text;
 
 
-
-
-
-var gameStart = function (){
+var gameStart = function () {
 
 	var row1 = document.getElementsByClassName('row1');
 	//console.log(row1);
@@ -102,17 +85,14 @@ var gameStart = function (){
 	r3c2text = row3[1].innerText;
 	r3c3text = row3[2].innerText;
 
-   }
-
-
-
-
-
+}
 
 var checkWhoWins = function (rowColInd1, rowColInd2, rowColInd3) {
 	if (rowColInd1 === rowColInd2 && rowColInd2 === rowColInd3) {
-		alert (rowColInd2 + 'wins')
-	}
+		state.gameWin = true;
+		alert (rowColInd2 + ' WINS');
+	} 
+	
 }
 
 var results = function () {
@@ -124,9 +104,22 @@ var results = function () {
 	checkWhoWins(r1c3text, r2c3text, r3c3text);
 	checkWhoWins(r1c1text, r2c2text, r3c3text);
 	checkWhoWins(r1c3text, r2c2text, r3c1text);
+	 if (state.gameWin === false) {
+		alert ("it's a draw");
+	}
 };
 
-  
+var newGame = document.getElementById('btn');
+var emptySq = document.getElementsByClassName('clickable');
+
+newGame.addEventListener('click', function() {
+  for (let i = 0; i < emptySq.length; i++) {
+    emptySq[i].innerHTML = '';
+    state.xTurn = true,
+	state.compTurn= false,
+	state.clickCount=0
+  }
+});
 	// var row1 = document.getElementsByClassName('row1');
 	//   for (var i = 0; i < row1.length; i++) {
 	//    row1text = row1[i].innerText;
