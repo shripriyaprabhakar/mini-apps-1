@@ -50,7 +50,9 @@ var state = {
 
   });
 
-
+var row1 = document.getElementsByClassName('row1');
+var row2 = document.getElementsByClassName('row2');
+var row3 = document.getElementsByClassName('row3');
 var r1c1text;
 var r1c2text;
 var r1c3text;
@@ -64,10 +66,6 @@ var r3c3text;
 
 var gameStart = function () {
 
-	var row1 = document.getElementsByClassName('row1');
-	//console.log(row1);
-	var row2 = document.getElementsByClassName('row2');
-	var row3 = document.getElementsByClassName('row3');
 	var col1 = document.getElementsByClassName('col1');
 	var col2 = document.getElementsByClassName('col2');
 	var col3 = document.getElementsByClassName('col2');
@@ -110,15 +108,17 @@ var results = function () {
 };
 
 var newGame = document.getElementById('btn');
-var emptySq = document.getElementsByClassName('clickable');
+var arr = [row1, row2, row3]
 
 newGame.addEventListener('click', function() {
-  for (let i = 0; i < emptySq.length; i++) {
-    emptySq[i].innerHTML = '';
-    state.xTurn = true,
-	state.compTurn= false,
-	state.clickCount=0
-  }
+  arr.forEach(function (element) {
+  	 for (let i = 0; i < element.length; i++) {
+	    element[i].innerHTML = '';
+	    state.xTurn = true,
+		state.compTurn= false,
+		state.clickCount=0
+     }
+  });
 });
 	// var row1 = document.getElementsByClassName('row1');
 	//   for (var i = 0; i < row1.length; i++) {
