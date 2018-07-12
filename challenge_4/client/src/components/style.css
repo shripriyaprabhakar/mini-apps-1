@@ -1,0 +1,19 @@
+.tableStyle { 
+    border-collapse: collapse;
+                 border: 5px solid blue; 
+                 flex-direction: column;
+                
+                 background-color: yellow;
+        }
+       	
+td { 
+
+    border: 3px solid red; 
+    padding: 3em;
+}
+
+tr { 
+    cursor: pointer; 
+}
+
+
